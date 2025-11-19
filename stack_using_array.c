@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Stack
+typedef struct StackArray
 {
   int size;
   int top;
   int *arr;
-} Stack;
+} StackArray;
 
-Stack *createStack(int size)
+StackArray *createStack(int size)
 {
-  Stack *stack = (Stack *)malloc(sizeof(Stack));
+  StackArray *stack = (StackArray *)malloc(sizeof(StackArray));
   stack->size = size;
   stack->top = -1;
   stack->arr = (int *)malloc(stack->size * sizeof(int));
@@ -18,7 +18,7 @@ Stack *createStack(int size)
   return stack;
 }
 
-int isEmpty(Stack *check)
+int isEmpty(StackArray *check)
 {
   if (check->top == -1)
     return 1;
@@ -26,7 +26,7 @@ int isEmpty(Stack *check)
     return 0;
 }
 
-int isFull(Stack *check)
+int isFull(StackArray *check)
 {
   if (check->top == check->size - 1)
     return 1;
@@ -34,7 +34,7 @@ int isFull(Stack *check)
     return 0;
 }
 
-void push(Stack *stack, int value)
+void push(StackArray *stack, int value)
 {
   if (isFull(stack))
   {
@@ -48,7 +48,7 @@ void push(Stack *stack, int value)
   }
 }
 
-void pop(Stack *stack)
+void pop(StackArray *stack)
 {
   if (isEmpty(stack))
   {
@@ -61,7 +61,7 @@ void pop(Stack *stack)
   }
 }
 
-void display(Stack *displayStack)
+void display(StackArray *displayStack)
 {
   if (isEmpty(displayStack))
   {
@@ -77,7 +77,7 @@ void display(Stack *displayStack)
   printf("\n");
 }
 
-void peek(Stack *stack, int position)
+void peek(StackArray *stack, int position)
 {
   int index = stack->top - position + 1;
   if (index < 0 || index > stack->top)
@@ -88,7 +88,7 @@ void peek(Stack *stack, int position)
   printf("Value at position %d is %d\n", position, stack->arr[index]);
 }
 
-void stackTop(Stack *stack)
+void stackTop(StackArray *stack)
 {
   if(isEmpty(stack))
   {
@@ -98,7 +98,7 @@ void stackTop(Stack *stack)
   printf("Top element is %d\n", stack->arr[stack->top]);
 }
 
-void stackBottom(Stack *stack)
+void stackBottom(StackArray *stack)
 {
   if(isEmpty(stack))
   {
@@ -134,7 +134,7 @@ int main()
       printf("Enter the size of the stack: ");
       int size;
       scanf("%d", &size);
-      Stack *stack = createStack(size);
+      StackArray *stack = createStack(size);
       printf("Stack created successfully\n");
       break;
 
